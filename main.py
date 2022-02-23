@@ -32,6 +32,16 @@ class Planet:
         x = self.x * self.SCALE + WIDTH / 2
         y = self.y * self.SCALE + HEIGHT / 2
         
+        if len(self.orbit) > 2:
+            updatedPoints = []
+            for point in self.orbit:
+                x, y = point
+                x = x * self.SCALE + WIDTH / 2
+                y = y * self.SCALE + HEIGHT / 2
+                updatedPoints.append((x, y))
+            
+            pygame.draw.aalines(win, self.colour, False, updatedPoints, 2)
+        
         pygame.gfxdraw.aacircle(win, int(x), int(y), self.radius, self.colour)
         pygame.gfxdraw.filled_circle(win, int(x), int(y), self.radius, self.colour)
 
